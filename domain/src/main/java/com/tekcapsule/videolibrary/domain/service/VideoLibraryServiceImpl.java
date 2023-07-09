@@ -2,7 +2,7 @@ package com.tekcapsule.videolibrary.domain.service;
 
 import com.tekcapsule.videolibrary.domain.command.CreateCommand;
 import com.tekcapsule.videolibrary.domain.command.UpdateCommand;
-import com.tekcapsule.videolibrary.domain.model.Course;
+import com.tekcapsule.videolibrary.domain.model.Video;
 import com.tekcapsule.videolibrary.domain.model.Status;
 import com.tekcapsule.videolibrary.domain.repository.VideoLibraryDynamoRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -23,86 +23,63 @@ public class VideoLibraryServiceImpl implements VideoLibraryService {
     @Override
     public void create(CreateCommand createCommand) {
 
-        log.info(String.format("Entering create course service - Module Code :%s", createCommand.getTopicCode()));
+        log.info(String.format("Entering create video service - Module Code :%s", createCommand.getTopicCode()));
 
-        Course course = Course.builder()
+        Video video = Video.builder()
                 .title(createCommand.getTitle())
                 .topicCode(createCommand.getTopicCode())
                 .author(createCommand.getAuthor())
                 .publisher(createCommand.getPublisher())
                 .duration(createCommand.getDuration())
-                .courseUrl(createCommand.getCourseUrl())
+                .videoUrl(createCommand.getVideoUrl())
                 .summary(createCommand.getSummary())
                 .description(createCommand.getDescription())
-                .modules(createCommand.getModules())
-                .prizingModel(createCommand.getPrizingModel())
-                .deliveryMode(createCommand.getDeliveryMode())
-                .learningMode(createCommand.getLearningMode())
                 .imageUrl(createCommand.getImageUrl())
                 .promotion(createCommand.getPromotion())
                 .status(Status.ACTIVE)
                 .build();
 
-        course.setAddedOn(createCommand.getExecOn());
-        course.setAddedBy(createCommand.getExecBy().getUserId());
+        video.setAddedOn(createCommand.getExecOn());
+        video.setAddedBy(createCommand.getExecBy().getUserId());
 
-        videoLibraryDynamoRepository.save(course);
+        videoLibraryDynamoRepository.save(video);
     }
 
     @Override
     public void update(UpdateCommand updateCommand) {
 
-        log.info(String.format("Entering update course service - Course ID:%s", updateCommand.getCourseId()));
+        log.info(String.format("Entering update video service - Video ID:%s", updateCommand.getVideoId()));
 
-        Course course = videoLibraryDynamoRepository.findBy(updateCommand.getCourseId());
-        if (course != null) {
-            course.setTitle(updateCommand.getTitle());
-            course.setTopicCode(updateCommand.getTopicCode());
-            course.setAuthor(updateCommand.getAuthor());
-            course.setPublisher(updateCommand.getPublisher());
-            course.setDuration(updateCommand.getDuration());
-            course.setCourseUrl(updateCommand.getCourseUrl());
-            course.setSummary(updateCommand.getSummary());
-            course.setDescription(updateCommand.getDescription());
-            course.setModules(updateCommand.getModules());
-            course.setPrizingModel(updateCommand.getPrizingModel());
-            course.setDeliveryMode(updateCommand.getDeliveryMode());
-            course.setLearningMode(updateCommand.getLearningMode());
-            course.setPromotion(updateCommand.getPromotion());
-            course.setImageUrl(updateCommand.getImageUrl());
-            course.setUpdatedOn(updateCommand.getExecOn());
-            course.setUpdatedBy(updateCommand.getExecBy().getUserId());
-            videoLibraryDynamoRepository.save(course);
+        Video video = videoLibraryDynamoRepository.findBy(updateCommand.getVideoId());
+        if (video != null) {
+            video.setTitle(updateCommand.getTitle());
+            video.setTopicCode(updateCommand.getTopicCode());
+            video.setAuthor(updateCommand.getAuthor());
+            video.setPublisher(updateCommand.getPublisher());
+            video.setDuration(updateCommand.getDuration());
+            video.setVideoUrl(updateCommand.getVideoUrl());
+            video.setSummary(updateCommand.getSummary());
+            video.setDescription(updateCommand.getDescription());
+            video.setPromotion(updateCommand.getPromotion());
+            video.setImageUrl(updateCommand.getImageUrl());
+            video.setUpdatedOn(updateCommand.getExecOn());
+            video.setUpdatedBy(updateCommand.getExecBy().getUserId());
+            videoLibraryDynamoRepository.save(video);
         }
     }
 
-   /* @Override
-    public void disable(DisableCommand disableCommand) {
-
-        log.info(String.format("Entering disable topic service - Module Code:%s", disableCommand.getCode()));
-
-        videoLibraryDynamoRepository.findBy(disableCommand.getCode());
-        Module topic = videoLibraryDynamoRepository.findBy(disableCommand.getCode());
-        if (topic != null) {
-            topic.setStatus("INACTIVE");
-            topic.setUpdatedOn(disableCommand.getExecOn());
-            topic.setUpdatedBy(disableCommand.getExecBy().getUserId());
-            videoLibraryDynamoRepository.save(topic);
-        }
-    }*/
-
     @Override
-    public List<Course> findAll() {
+    public List<Video> findAll() {
 
-        log.info("Entering findAll Course service");
+        log.info("Entering findAll Video service");
 
         return videoLibraryDynamoRepository.findAll();
     }
 
     @Override
-    public List<Course> findAllByTopicCode(String topicCode) {
+    public List<Video> findAllByTopicCode(String topicCode) {
 
-        log.info(String.format("Entering findAllByTopicCode Course service - Module code:%s", topicCode));
+        log.info(String.format("Entering findAllByTopicCode Video service - Module code:%s", topicCode));
 
         return videoLibraryDynamoRepository.findAllByTopicCode(topicCode);
     }

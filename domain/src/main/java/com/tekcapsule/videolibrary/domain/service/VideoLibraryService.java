@@ -2,7 +2,7 @@ package com.tekcapsule.videolibrary.domain.service;
 
 import com.tekcapsule.videolibrary.domain.command.CreateCommand;
 import com.tekcapsule.videolibrary.domain.command.UpdateCommand;
-import com.tekcapsule.videolibrary.domain.model.Course;
+import com.tekcapsule.videolibrary.domain.model.Video;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface VideoLibraryService {
 
     void update(UpdateCommand updateCommand);
 
-    List<Course> findAll();
+    List<Video> findAll();
 
-    List<Course> findAllByTopicCode(String code);
+    List<Video> findAllByTopicCode(String code);
 }

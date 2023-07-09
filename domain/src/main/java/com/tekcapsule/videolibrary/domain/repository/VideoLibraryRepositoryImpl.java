@@ -4,7 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.tekcapsule.videolibrary.domain.model.Course;
+import com.tekcapsule.videolibrary.domain.model.Video;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,13 +25,13 @@ public class VideoLibraryRepositoryImpl implements VideoLibraryDynamoRepository 
     }
 
     @Override
-    public List<Course> findAll() {
+    public List<Video> findAll() {
 
-        return dynamo.scan(Course.class,new DynamoDBScanExpression());
+        return dynamo.scan(Video.class,new DynamoDBScanExpression());
     }
 
     @Override
-    public List<Course> findAllByTopicCode(String topicCode) {
+    public List<Video> findAllByTopicCode(String topicCode) {
 
         HashMap<String, AttributeValue> expAttributes = new HashMap<>();
         expAttributes.put(":status", new AttributeValue().withS(ACTIVE_STATUS));
@@ -42,24 +42,24 @@ public class VideoLibraryRepositoryImpl implements VideoLibraryDynamoRepository 
         expNames.put("#topicCode", "topicCode");
 
 
-        DynamoDBQueryExpression<Course> queryExpression = new DynamoDBQueryExpression<Course>()
+        DynamoDBQueryExpression<Video> queryExpression = new DynamoDBQueryExpression<Video>()
                 .withIndexName("topicGSI").withConsistentRead(false)
                 .withKeyConditionExpression("#status = :status and #topicCode = :topicCode")
                 .withExpressionAttributeValues(expAttributes)
                 .withExpressionAttributeNames(expNames);
 
-        return dynamo.query(Course.class, queryExpression);
+        return dynamo.query(Video.class, queryExpression);
 
     }
 
     @Override
-    public Course findBy(String code) {
-        return dynamo.load(Course.class, code);
+    public Video findBy(String code) {
+        return dynamo.load(Video.class, code);
     }
 
     @Override
-    public Course save(Course course) {
-        dynamo.save(course);
-        return course;
+    public Video save(Video video) {
+        dynamo.save(video);
+        return video;
     }
 }
