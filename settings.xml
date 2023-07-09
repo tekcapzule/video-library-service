@@ -18,8 +18,8 @@
                     </snapshots>
                 </repository>
                 <repository>
-                    <id>course</id>
-                    <url>https://maven.pkg.github.com/tekcapsule/course-service</url>
+                    <id>video-library</id>
+                    <url>https://maven.pkg.github.com/tekcapsule/video-library-service</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
@@ -34,7 +34,7 @@
 
     <servers>
         <server>
-            <id>course</id>
+            <id>video-library</id>
             <username>${env.SERVER_USERNAME}</username>
             <password>${env.SERVER_PASSWORD}</password>
         </server>
