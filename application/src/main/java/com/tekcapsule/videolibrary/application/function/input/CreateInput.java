@@ -19,7 +19,6 @@ public class CreateInput {
     private String videoUrl;
     private String summary;
     private String description;
-    private List<Module> modules;
     private String imageUrl;
     private Promotion promotion;
 }
