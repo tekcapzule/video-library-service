@@ -31,7 +31,7 @@ public class VideoLibraryServiceImpl implements VideoLibraryService {
                 .author(createCommand.getAuthor())
                 .publisher(createCommand.getPublisher())
                 .duration(createCommand.getDuration())
-                .videoUrl(createCommand.getVideoUrl())
+                .resourceUrl(createCommand.getResourceUrl())
                 .summary(createCommand.getSummary())
                 .description(createCommand.getDescription())
                 .imageUrl(createCommand.getImageUrl())
@@ -57,7 +57,7 @@ public class VideoLibraryServiceImpl implements VideoLibraryService {
             video.setAuthor(updateCommand.getAuthor());
             video.setPublisher(updateCommand.getPublisher());
             video.setDuration(updateCommand.getDuration());
-            video.setVideoUrl(updateCommand.getVideoUrl());
+            video.setResourceUrl(updateCommand.getResourceUrl());
             video.setSummary(updateCommand.getSummary());
             video.setDescription(updateCommand.getDescription());
             video.setPromotion(updateCommand.getPromotion());
