@@ -5,8 +5,6 @@ import com.tekcapsule.videolibrary.domain.model.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
@@ -16,7 +14,7 @@ public class CreateInput {
     private String author;
     private String publisher;
     private String duration;
-    private String videoUrl;
+    private String resourceUrl;
     private String summary;
     private String description;
     private String imageUrl;

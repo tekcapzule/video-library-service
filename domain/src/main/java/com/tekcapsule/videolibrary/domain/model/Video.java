@@ -31,8 +31,8 @@ public class Video extends BaseDomainEntity implements AggregateRoot {
     private String publisher;
     @DynamoDBAttribute(attributeName = "duration")
     private String duration;
-    @DynamoDBAttribute(attributeName = "videoUrl")
-    private String videoUrl;
+    @DynamoDBAttribute(attributeName = "resourceUrl")
+    private String resourceUrl;
     @DynamoDBAttribute(attributeName = "imageUrl")
     private String imageUrl;
     @DynamoDBAttribute(attributeName = "promotion")
