@@ -20,4 +20,5 @@ public class CreateCommand extends Command {
     private String description;
     private String imageUrl;
     private Promotion promotion;
+    private int recommendations;
 }

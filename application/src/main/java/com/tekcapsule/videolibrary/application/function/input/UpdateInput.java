@@ -20,4 +20,5 @@ public class UpdateInput {
     private String description;
     private String imageUrl;
     private Promotion promotion;
+    private int recommendations;
 }

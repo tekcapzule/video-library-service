@@ -41,7 +41,7 @@ public class RecommendFunction implements Function<Message<RecommendInput>, Mess
         String stage = appConfig.getStage().toUpperCase();
         try {
             RecommendInput recommendInput = recommendInputMessage.getPayload();
-            log.info(String.format("Entering recommend videolibrary Function -  videolibrary Id:%s", recommendInput.getVideoLibraryId()));
+            log.info(String.format("Entering recommend videolibrary Function -  videolibrary Id:%s", recommendInput.getVideoId()));
             Origin origin = HeaderUtil.buildOriginFromHeaders(recommendInputMessage.getHeaders());
             RecommendCommand recommendCommand = InputOutputMapper.buildRecommendCommandFromRecommendInput.apply(recommendInput, origin);
             videoLibraryService.recommend(recommendCommand);
