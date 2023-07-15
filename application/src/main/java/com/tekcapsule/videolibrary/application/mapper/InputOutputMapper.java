@@ -4,8 +4,10 @@ import com.tekcapsule.core.domain.Command;
 import com.tekcapsule.core.domain.ExecBy;
 import com.tekcapsule.core.domain.Origin;
 import com.tekcapsule.videolibrary.application.function.input.CreateInput;
+import com.tekcapsule.videolibrary.application.function.input.RecommendInput;
 import com.tekcapsule.videolibrary.application.function.input.UpdateInput;
 import com.tekcapsule.videolibrary.domain.command.CreateCommand;
+import com.tekcapsule.videolibrary.domain.command.RecommendCommand;
 import com.tekcapsule.videolibrary.domain.command.UpdateCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -41,5 +43,13 @@ public final class InputOutputMapper {
         addOrigin.apply(updateCommand, origin);
         return updateCommand;
     };
+
+    public static final BiFunction<RecommendInput, Origin, RecommendCommand> buildRecommendCommandFromRecommendInput = (recommendInput, origin) -> {
+        RecommendCommand recommendCommand =  RecommendCommand.builder().build();
+        BeanUtils.copyProperties(recommendInput, recommendCommand);
+        addOrigin.apply(recommendCommand, origin);
+        return recommendCommand;
+    };
+
 
 }

@@ -61,6 +61,9 @@ Resources:
           AttributeType: S
         - AttributeName: status
           AttributeType: S
+        - AttributeName: recommendations
+          AttributeType: N
+
       KeySchema:
         - AttributeName: videoId
           KeyType: HASH
@@ -162,6 +165,27 @@ Resources:
           Type: Api
           Properties:
             Path: video-library/getAll
+            Method: post
+            RestApiId:
+              Ref: VideoLibraryApi
+
+  RecommendVideoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${Stage}-VideoLibrary-RecommendVideo"
+      SnapStart:
+        ApplyOn: PublishedVersions
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref VideoLibraryTable
+      Environment:
+        Variables:
+          SPRING_CLOUD_FUNCTION_DEFINITION: recommendFunction
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: video-library/recommend
             Method: post
             RestApiId:
               Ref: VideoLibraryApi
