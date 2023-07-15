@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 public class RecommendInput {
-    private String videoLibraryId;
+    private String videoId;
 }

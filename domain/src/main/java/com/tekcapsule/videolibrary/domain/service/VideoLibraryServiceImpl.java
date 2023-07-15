@@ -38,6 +38,7 @@ public class VideoLibraryServiceImpl implements VideoLibraryService {
                 .imageUrl(createCommand.getImageUrl())
                 .promotion(createCommand.getPromotion())
                 .status(Status.ACTIVE)
+                .recommendations(createCommand.getRecommendations())
                 .build();
 
         video.setAddedOn(createCommand.getExecOn());
@@ -65,15 +66,16 @@ public class VideoLibraryServiceImpl implements VideoLibraryService {
             video.setImageUrl(updateCommand.getImageUrl());
             video.setUpdatedOn(updateCommand.getExecOn());
             video.setUpdatedBy(updateCommand.getExecBy().getUserId());
+            video.setRecommendations(updateCommand.getRecommendations());
             videoLibraryDynamoRepository.save(video);
         }
     }
 
     @Override
     public void recommend(RecommendCommand recommendCommand) {
-        log.info(String.format("Entering recommend videolibrary service -  videolibrary Id:%s", recommendCommand.getVideoLibraryId()));
+        log.info(String.format("Entering recommend videolibrary service -  videolibrary Id:%s", recommendCommand.getVideoId()));
 
-        Video video = videoLibraryDynamoRepository.findBy(recommendCommand.getVideoLibraryId());
+        Video video = videoLibraryDynamoRepository.findBy(recommendCommand.getVideoId());
         if (video != null) {
             Integer recommendationsCount = video.getRecommendations();
             recommendationsCount += 1;
