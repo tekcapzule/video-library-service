@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.tekcapsule</groupId>
     <artifactId>video-library-service</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <name>Video Library Service</name>
     <description>Video Library Service</description>
     <properties>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>com.tekcapsule</groupId>
             <artifactId>video-library-domain</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
