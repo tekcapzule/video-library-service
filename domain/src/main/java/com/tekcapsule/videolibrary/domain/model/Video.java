@@ -40,5 +40,7 @@ public class Video extends BaseDomainEntity implements AggregateRoot {
     @DynamoDBAttribute(attributeName = "status")
     @DynamoDBTypeConvertedEnum
     private Status status;
+    @DynamoDBAttribute(attributeName = "recommendations")
+    private int recommendations;
 }
 

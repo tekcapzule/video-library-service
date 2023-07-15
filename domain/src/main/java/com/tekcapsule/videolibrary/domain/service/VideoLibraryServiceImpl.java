@@ -1,6 +1,7 @@
 package com.tekcapsule.videolibrary.domain.service;
 
 import com.tekcapsule.videolibrary.domain.command.CreateCommand;
+import com.tekcapsule.videolibrary.domain.command.RecommendCommand;
 import com.tekcapsule.videolibrary.domain.command.UpdateCommand;
 import com.tekcapsule.videolibrary.domain.model.Video;
 import com.tekcapsule.videolibrary.domain.model.Status;
@@ -64,6 +65,23 @@ public class VideoLibraryServiceImpl implements VideoLibraryService {
             video.setImageUrl(updateCommand.getImageUrl());
             video.setUpdatedOn(updateCommand.getExecOn());
             video.setUpdatedBy(updateCommand.getExecBy().getUserId());
+            videoLibraryDynamoRepository.save(video);
+        }
+    }
+
+    @Override
+    public void recommend(RecommendCommand recommendCommand) {
+        log.info(String.format("Entering recommend videolibrary service -  videolibrary Id:%s", recommendCommand.getVideoLibraryId()));
+
+        Video video = videoLibraryDynamoRepository.findBy(recommendCommand.getVideoLibraryId());
+        if (video != null) {
+            Integer recommendationsCount = video.getRecommendations();
+            recommendationsCount += 1;
+            video.setRecommendations(recommendationsCount);
+
+            video.setUpdatedOn(recommendCommand.getExecOn());
+            video.setUpdatedBy(recommendCommand.getExecBy().getUserId());
+
             videoLibraryDynamoRepository.save(video);
         }
     }
