@@ -39,6 +39,7 @@ public class VideoLibraryServiceImpl implements VideoLibraryService {
                 .promotion(createCommand.getPromotion())
                 .status(Status.ACTIVE)
                 .recommendations(createCommand.getRecommendations())
+                .publishedOn(createCommand.getPublishedOn())
                 .build();
 
         video.setAddedOn(createCommand.getExecOn());
@@ -67,6 +68,7 @@ public class VideoLibraryServiceImpl implements VideoLibraryService {
             video.setUpdatedOn(updateCommand.getExecOn());
             video.setUpdatedBy(updateCommand.getExecBy().getUserId());
             video.setRecommendations(updateCommand.getRecommendations());
+            video.setPublishedOn(updateCommand.getPublishedOn());
             videoLibraryDynamoRepository.save(video);
         }
     }
