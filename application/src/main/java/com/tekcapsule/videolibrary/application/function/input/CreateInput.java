@@ -20,4 +20,5 @@ public class CreateInput {
     private String imageUrl;
     private Promotion promotion;
     private int recommendations;
+    private String publishedOn;
 }
