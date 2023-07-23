@@ -205,7 +205,7 @@ Resources:
   ApproveVideoFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub "${Stage}-ResearchPaper-ApproveVideo"
+      FunctionName: !Sub "${Stage}-VideoLibrary-ApproveVideo"
       SnapStart:
         ApplyOn: PublishedVersions
       Policies:
