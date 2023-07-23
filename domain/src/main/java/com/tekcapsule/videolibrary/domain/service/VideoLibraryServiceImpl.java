@@ -1,5 +1,6 @@
 package com.tekcapsule.videolibrary.domain.service;
 
+import com.tekcapsule.videolibrary.domain.command.ApproveCommand;
 import com.tekcapsule.videolibrary.domain.command.CreateCommand;
 import com.tekcapsule.videolibrary.domain.command.RecommendCommand;
 import com.tekcapsule.videolibrary.domain.command.UpdateCommand;
@@ -37,7 +38,7 @@ public class VideoLibraryServiceImpl implements VideoLibraryService {
                 .description(createCommand.getDescription())
                 .imageUrl(createCommand.getImageUrl())
                 .promotion(createCommand.getPromotion())
-                .status(Status.ACTIVE)
+                .status(Status.SUBMITTED)
                 .recommendations(createCommand.getRecommendations())
                 .publishedOn(createCommand.getPublishedOn())
                 .build();
@@ -104,6 +105,21 @@ public class VideoLibraryServiceImpl implements VideoLibraryService {
         log.info(String.format("Entering findAllByTopicCode Video service - Module code:%s", topicCode));
 
         return videoLibraryDynamoRepository.findAllByTopicCode(topicCode);
+    }
+
+    @Override
+    public void approve(ApproveCommand approveCommand) {
+        log.info(String.format("Entering approve videolibrary service -  video Id:%s", approveCommand.getVideoId()));
+
+        Video video = videoLibraryDynamoRepository.findBy(approveCommand.getVideoId());
+        if (video != null) {
+            video.setStatus(Status.ACTIVE);
+
+            video.setUpdatedOn(approveCommand.getExecOn());
+            video.setUpdatedBy(approveCommand.getExecBy().getUserId());
+
+            videoLibraryDynamoRepository.save(video);
+        }
     }
 
 

@@ -3,9 +3,11 @@ package com.tekcapsule.videolibrary.application.mapper;
 import com.tekcapsule.core.domain.Command;
 import com.tekcapsule.core.domain.ExecBy;
 import com.tekcapsule.core.domain.Origin;
+import com.tekcapsule.videolibrary.application.function.input.ApproveVideoLibraryInput;
 import com.tekcapsule.videolibrary.application.function.input.CreateInput;
 import com.tekcapsule.videolibrary.application.function.input.RecommendInput;
 import com.tekcapsule.videolibrary.application.function.input.UpdateInput;
+import com.tekcapsule.videolibrary.domain.command.ApproveCommand;
 import com.tekcapsule.videolibrary.domain.command.CreateCommand;
 import com.tekcapsule.videolibrary.domain.command.RecommendCommand;
 import com.tekcapsule.videolibrary.domain.command.UpdateCommand;
@@ -49,6 +51,13 @@ public final class InputOutputMapper {
         BeanUtils.copyProperties(recommendInput, recommendCommand);
         addOrigin.apply(recommendCommand, origin);
         return recommendCommand;
+    };
+
+    public static final BiFunction<ApproveVideoLibraryInput, Origin, ApproveCommand> buildApproveCommandFromApproveVideoLibraryInput = (approveResearchPaperInput, origin) -> {
+        ApproveCommand approveCommand =  ApproveCommand.builder().build();
+        BeanUtils.copyProperties(approveResearchPaperInput, approveCommand);
+        addOrigin.apply(approveCommand, origin);
+        return approveCommand;
     };
 
 
