@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.tekcapsule</groupId>
     <artifactId>video-library-domain</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <name>Video Library Domain</name>
     <description>Video Library Domain</description>
     <properties>

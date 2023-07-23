@@ -1,5 +1,6 @@
 package com.tekcapsule.videolibrary.domain.service;
 
+import com.tekcapsule.videolibrary.domain.command.ApproveCommand;
 import com.tekcapsule.videolibrary.domain.command.CreateCommand;
 import com.tekcapsule.videolibrary.domain.command.RecommendCommand;
 import com.tekcapsule.videolibrary.domain.command.UpdateCommand;
@@ -18,4 +19,5 @@ public interface VideoLibraryService {
 
     List<Video> findAllByTopicCode(String code);
     void recommend(RecommendCommand recommendCommand);
+    void approve(ApproveCommand approveCommand);
 }

@@ -202,6 +202,27 @@ Resources:
             RestApiId:
               Ref: VideoLibraryApi
 
+  ApproveVideoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${Stage}-ResearchPaper-ApproveVideo"
+      SnapStart:
+        ApplyOn: PublishedVersions
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref VideoLibraryTable
+      Environment:
+        Variables:
+          SPRING_CLOUD_FUNCTION_DEFINITION: approveFunction
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: video-library/approve
+            Method: post
+            RestApiId:
+              Ref: VideoLibraryApi
+
   # Set Output Variable
 
 Outputs:
