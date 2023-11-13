@@ -7,7 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="course-service" />
+        <module name="video-library-service" />
         <module name="course-domain" />
+        <module name="video-library-domain" />
       </profile>
     </annotationProcessing>
   </component>
@@ -15,6 +17,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="course-domain" options="-parameters" />
       <module name="course-service" options="-parameters" />
+      <module name="video-library-domain" options="-parameters" />
+      <module name="video-library-service" options="-parameters" />
     </option>
   </component>
 </project>

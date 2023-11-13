@@ -27,7 +27,7 @@ Globals:
         TABLE: !Ref VideoLibraryTable
         APPLICATION_ENVIRONMENT: !Ref Stage
         CLOUD_REGION: us-east-1
-        MAIN_CLASS: com.tekcapsule.videolibrary.application.VideoLibraryApplication
+        MAIN_CLASS: com.tekcapzule.videolibrary.application.VideoLibraryApplication
         JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
 
 Resources:
